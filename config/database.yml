@@ -1,0 +1,24 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: butterfly_api_development
+  username: <%= ENV['POSTGRES_LOCAL_DATABASE_USERNAME'] %>
+  password: <%= ENV['POSTGRES_LOCAL_DATABASE_PASSWORD'] %>
+  host: <%= ENV['POSTGRES_LOCAL_DATABASE_HOST'] %>
+
+test:
+  <<: *default
+  database: butterfly_api_test
+  username: <%= ENV['POSTGRES_LOCAL_DATABASE_USERNAME'] %>
+  password: <%= ENV['POSTGRES_LOCAL_DATABASE_PASSWORD'] %>
+  host: <%= ENV['POSTGRES_LOCAL_DATABASE_HOST'] %>
+
+production:
+  <<: *default
+  database: butterfly_api_production
+  username: butterfly_api
+  password: <%= ENV['BUTTERFLY_API_DATABASE_PASSWORD'] %>
